@@ -1,32 +1,52 @@
-# Prerequisites
-*.d
+# Build folders
+/build/
+/bin/
+/lib/
+/CMakeFiles/
+/CMakeCache.txt
+/cmake_install.cmake
+/Makefile
 
-# Compiled Object files
-*.slo
-*.lo
+# Compiled object files
 *.o
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
+*.lo
 *.a
 *.lib
-
-# Executables
+*.dll
+*.so
+*.dylib
 *.exe
 *.out
-*.app
+
+# IDE files (Visual Studio, CLion, VSCode, etc.)
+.vscode/
+.idea/
+*.sln
+*.vcxproj*
+*.user
+*.DS_Store
+
+# SFML-specific runtime files (optional)
+*.log
+*.cfg
+*.ini
+
+# Generated files
+*.gch
+*.pch
+*.swp
+*.bak
+
+# macOS/Linux system files
+*.dSYM/
+*.AppleDouble
+*.LSOverride
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Optional: keep compile_commands.json out if generated
+compile_commands.json
