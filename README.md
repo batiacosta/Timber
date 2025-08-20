@@ -9,8 +9,6 @@ Make sure you have the following tools installed:
 - Linux/macOS: Clang or GCC
 - Ninja (recommended for Windows builds)
 - Git
-Optional:
-- Clangd + compile_commands.json for IDE integration (e.g. Zed, VSCode)
 
 ## Clone the Repository
 ```
