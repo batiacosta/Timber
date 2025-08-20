@@ -25,6 +25,8 @@ target_link_libraries(Timber
         sfml-graphics
         sfml-window
         sfml-system
+        sfml-network
+        sfml-audio
 )
 
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
