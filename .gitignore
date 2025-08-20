@@ -1,11 +1,14 @@
 # Build folders
 /build/
+/build*/
 /bin/
 /lib/
 /CMakeFiles/
 /CMakeCache.txt
 /cmake_install.cmake
 /Makefile
+.cache/
+.cache/clangd
 
 # Compiled object files
 *.o
@@ -26,6 +29,12 @@
 *.vcxproj*
 *.user
 *.DS_Store
+*~
+*.tmp
+*.temp
+*.old
+*.orig
+
 
 # SFML-specific runtime files (optional)
 *.log
