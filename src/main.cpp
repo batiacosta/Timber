@@ -1,25 +1,22 @@
 #include <iostream>
+#include <optional>
+#include <print>
 #include "SFML/Graphics.hpp"
-#include "SFML/Window/Event.hpp"
+#include "SFML/Window/WindowEnums.hpp"
+
 
 int main(){
-
-    sf::RenderWindow window(sf::VideoMode({800, 600}), "Timber");
-    window.setFramerateLimit(60);
-
-    sf::CircleShape circle(50.0f);
-    circle.setFillColor(sf::Color::Green);
-    circle.setPosition({375.0f, 275.0f});
-    std::cout << "Hello world!\n";
-    while (window.isOpen()){
-        while (const std::optional event = window.pollEvent()){
-            if(event->is<sf::Event::Closed>()) {
+    sf::VideoMode vm({1920, 1080});
+    sf::RenderWindow window(vm, "Timber", sf::Style::Default);
+    while(window.isOpen()){
+        std::print("the window just opened\n");
+        while (const std::optional<sf::Event> event = window.pollEvent()) {
+            // Close window then exit
+            if(event->is<sf::Event::Closed>()){
                 window.close();
             }
         }
-
-        window.clear(sf::Color::Black);
-        window.draw(circle);
+        window.clear();
         window.display();
     }
     return 0;
