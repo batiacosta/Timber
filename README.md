@@ -15,11 +15,15 @@ Make sure you have the following tools installed:
 git clone https://github.com/batiacosta/Timber.git
 cd Timber
 ```
-## build and run (Cross-Platform Bash Script)
-
+## build and run
+### macOS and Linux
 ```
 chmod +x build_and_run.sh
 ./build_and_run.sh
 ```
-
+### Windows
+Run in PowerShell 
+```
+.\build_and_run.ps1
+```
 # Thank you
