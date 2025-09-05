@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <iostream>
 #include <optional>
 #include <print>
@@ -5,6 +6,8 @@
 #include "SFML/Graphics/Sprite.hpp"
 #include "SFML/Graphics/Text.hpp"
 #include "SFML/Graphics/Texture.hpp"
+#include "SFML/System/Clock.hpp"
+#include "SFML/System/Time.hpp"
 
 int playerScore {0};
 char playerInitial {'J'};
@@ -46,6 +49,10 @@ int main(){
     spriteCloud3.setPosition({0,500});
     bool isCloud3Moving = false;
     float cloud3Speed = 0.0;
+
+    int number = (std::rand() % 100);
+
+    sf::Clock clock;
     while(window.isOpen()){
         while (const std::optional<sf::Event> event = window.pollEvent()) {
             // Close window then exit
@@ -60,8 +67,25 @@ int main(){
         }
 
         // Update the scene
+        sf::Time dt = clock.restart();
+        if(!isBeeMoving){
+            srand((int)time(0));
+            beeSpeed = (std::rand() % 200) + 200;
+
+            srand((int)time(0) * 10);
+            float height = (std::rand() % 500) + 500;
+            spriteBee.setPosition({2000, height});
+            isBeeMoving = true;
+        }else{
+            spriteBee.setPosition({
+                spriteBee.getPosition().x - (beeSpeed * dt.asSeconds()),
+                spriteBee.getPosition().y
+            });
+            if(spriteBee.getPosition().x < -100) isBeeMoving = false;
+        }
+
         window.clear();
-        // Draw the scene
+
         window.draw(spriteBackground);
         window.draw(spriteCloud1);
         window.draw(spriteCloud2);
