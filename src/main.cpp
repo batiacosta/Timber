@@ -68,6 +68,7 @@ int main(){
 
         // Update the scene
         sf::Time dt = clock.restart();
+
         if(!isBeeMoving){
             srand((int)time(0));
             beeSpeed = (std::rand() % 200) + 200;
@@ -82,6 +83,20 @@ int main(){
                 spriteBee.getPosition().y
             });
             if(spriteBee.getPosition().x < -100) isBeeMoving = false;
+        }
+
+        if(!isCloud1Moving){
+            srand((int)time(0) * 10);
+            cloud1Speed = (std::rand() % 200);
+            float height = (std::rand() % 150);
+            spriteCloud1.setPosition({-200, height});
+            isCloud1Moving = true;
+        }else{
+            spriteCloud1.setPosition({
+                spriteCloud1.getPosition().x + (cloud1Speed * dt.asSeconds()),
+                spriteCloud1.getPosition().y
+            });
+            if(spriteCloud1.getPosition().x > 2000) isCloud1Moving = false;
         }
 
         window.clear();
