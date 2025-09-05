@@ -88,6 +88,7 @@ int main(){
         if(!isCloud1Moving){
             srand((int)time(0) * 10);
             cloud1Speed = (std::rand() % 200);
+            srand((int)time(0) * 10);
             float height = (std::rand() % 150);
             spriteCloud1.setPosition({-200, height});
             isCloud1Moving = true;
@@ -96,7 +97,37 @@ int main(){
                 spriteCloud1.getPosition().x + (cloud1Speed * dt.asSeconds()),
                 spriteCloud1.getPosition().y
             });
-            if(spriteCloud1.getPosition().x > 2000) isCloud1Moving = false;
+            if(spriteCloud1.getPosition().x > 1920) isCloud1Moving = false;
+        }
+
+        if(!isCloud2Moving){
+            srand((int)time(0) * 20);
+            cloud2Speed = (std::rand() % 200);
+            srand((int)time(0) * 20);
+            float height = (std::rand() % 300) - 150;
+            spriteCloud2.setPosition({-200, height});
+            isCloud2Moving = true;
+        }else{
+            spriteCloud2.setPosition({
+                spriteCloud2.getPosition().x + (cloud2Speed * dt.asSeconds()),
+                spriteCloud2.getPosition().y
+            });
+            if(spriteCloud2.getPosition().x > 1920) isCloud2Moving = false;
+        }
+
+        if(!isCloud3Moving){
+            srand((int)time(0) * 30);
+            cloud3Speed = (std::rand() % 200);
+            srand((int)time(0) * 30);
+            float height = (std::rand() % 450) - 150;
+            spriteCloud3.setPosition({-200, height});
+            isCloud3Moving = true;
+        }else{
+            spriteCloud3.setPosition({
+                spriteCloud3.getPosition().x + (cloud3Speed * dt.asSeconds()),
+                spriteCloud3.getPosition().y
+            });
+            if(spriteCloud3.getPosition().x > 1920) isCloud3Moving = false;
         }
 
         window.clear();
