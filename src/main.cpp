@@ -2,7 +2,11 @@
 #include <iostream>
 #include <optional>
 #include <print>
+#include <string>
+#include <sstream>
 #include "SFML/Graphics.hpp"
+#include "SFML/Graphics/Color.hpp"
+#include "SFML/Graphics/Rect.hpp"
 #include "SFML/Graphics/Sprite.hpp"
 #include "SFML/Graphics/Text.hpp"
 #include "SFML/Graphics/Texture.hpp"
@@ -56,6 +60,27 @@ int main(){
     sf::Clock clock;
 
     bool paused = true;
+
+    auto score {0};
+    sf::Font font;
+    if(!font.openFromFile("assets/fonts/KOMIKAP_.ttf")){
+        std::cerr << "Failed to load font";
+    }
+    sf::Text messageText(font);
+    sf::Text scoreText(font);
+    messageText.setString("Press Enter to start!");
+    scoreText.setString("Score = 0");
+    messageText.setCharacterSize(75);
+    scoreText.setCharacterSize(100);
+    messageText.setFillColor(sf::Color::White);
+    scoreText.setFillColor(sf::Color::White);
+    //Position text
+    sf::FloatRect textRect {messageText.getLocalBounds()};
+    messageText.setOrigin({textRect.getCenter().x + textRect.size.x/2.0f, textRect.getCenter().y + textRect.size.y/2.0f});
+    messageText.setPosition({1920/2.0f, 1080/2.0f});
+    scoreText.setPosition({20, 20});
+
+
     while(window.isOpen()){
         while (const std::optional<sf::Event> event = window.pollEvent()) {
             // Close window then exit
@@ -150,6 +175,9 @@ int main(){
         window.draw(spriteCloud3);
         window.draw(spriteTree);
         window.draw(spriteBee);
+
+        window.draw(messageText);
+        window.draw(scoreText);
         window.display();
     }
     return 0;
