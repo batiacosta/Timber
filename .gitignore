@@ -60,3 +60,4 @@ Desktop.ini
 # Optional: keep compile_commands.json out if generated
 compile_commands.json
 /.cache
+.cache/clangd/index/main.cpp.3E058FF35B9C8C1D.idx
