@@ -12,12 +12,18 @@ include(FetchContent)
 FetchContent_Declare(
   sfml
   GIT_REPOSITORY https://github.com/SFML/SFML.git
-  GIT_TAG 3.0.2
+  GIT_TAG master
 )
 FetchContent_MakeAvailable(SFML)
 
 # Add executable
 add_executable(Timber src/main.cpp)
+
+# Assets directory
+add_custom_command(TARGET Timber POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/assets
+    ${CMAKE_BINARY_DIR}/assets)
 
 # Link SFML modules
 target_link_libraries(Timber
