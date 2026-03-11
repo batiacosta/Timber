@@ -1,15 +1,11 @@
 #include <cstdlib>
+#include <filesystem>
 #include <iostream>
 #include <optional>
 #include <print>
 #include <string>
 #include <sstream>
 #include "SFML/Graphics.hpp"
-#include "SFML/Graphics/Color.hpp"
-#include "SFML/Graphics/Rect.hpp"
-#include "SFML/Graphics/Sprite.hpp"
-#include "SFML/Graphics/Text.hpp"
-#include "SFML/Graphics/Texture.hpp"
 #include "SFML/System/Clock.hpp"
 #include "SFML/System/Time.hpp"
 #include "SFML/Window/Keyboard.hpp"
@@ -23,25 +19,26 @@ const int TREE_HORIZONTAL_POSITION = 810;
 const int TREE_VERTICAL_POSITION = 0;
 
 
-int main(){
+int main(int argc, char* argv[]){
     sf::VideoMode vm({1920, 1080});
     sf::RenderWindow window(vm, "Timber", sf::Style::Default);
 
-    const sf::Texture textureBackground("assets/textures/background.png");
+    std::filesystem::path path( std::filesystem::canonical(argv[0]));
+    sf::Texture textureBackground( path.parent_path() / "assets/textures/background.png");
     sf::Sprite spriteBackground(textureBackground);
     spriteBackground.setPosition({0,0});
 
-    const sf::Texture textureTree("assets/textures/tree.png");
+    const sf::Texture textureTree(path.parent_path() / "assets/textures/tree.png");
     sf::Sprite spriteTree(textureTree);
     spriteTree.setPosition({TREE_HORIZONTAL_POSITION, TREE_VERTICAL_POSITION});
 
-    const sf::Texture textureBee("assets/textures/bee.png");
+    const sf::Texture textureBee(path.parent_path() / "assets/textures/bee.png");
     sf::Sprite spriteBee(textureBee);
     spriteBee.setPosition({0, 800});
     bool isBeeMoving = false;
     float beeSpeed = 0.0f;
 
-    const sf::Texture textureCloud("assets/textures/cloud.png");
+    const sf::Texture textureCloud(path.parent_path() / "assets/textures/cloud.png");
     sf::Sprite spriteCloud1(textureCloud);
     spriteCloud1.setPosition({0,0});
     bool isCloud1Moving = false;
@@ -63,7 +60,7 @@ int main(){
 
     auto score {0};
     sf::Font font;
-    if(!font.openFromFile("assets/fonts/KOMIKAP_.ttf")){
+    if(!font.openFromFile(path.parent_path() / "assets/fonts/KOMIKAP_.ttf")){
         std::cerr << "Failed to load font";
     }
     sf::Text messageText(font);
